@@ -10,33 +10,33 @@ import java.sql.SQLException;
 
 public class Review05 {
     public static void main(String[] args) {
-       
+
         Connection con = null;
         PreparedStatement pstmt = null;
         ResultSet rs = null;
 
         try {
-         
+
             Class.forName("com.mysql.cj.jdbc.Driver");
-            
-           
+
+
             con = DriverManager.getConnection(
                     "jdbc:mysql://localhost/kadaidb?useSSL=false&allowPublicKeyRetrieval=true",
                     "root",
                     "zippi0301Sso");
-            
-          
-            String sql = "SELECT*FROM kadaidb.person WHERE id = ?"; 
+
+
+            String sql = "SELECT * FROM kadaidb.person WHERE id = ?";
             pstmt = con.prepareStatement(sql);
-            
-          
-            System.out.print("検索キーワードを入力してください > ");    
-            int input = Integer.parseInt(keyIn());    
-            
-         
+
+
+            System.out.print("検索キーワードを入力してください > ");
+            int input = Integer.parseInt(keyIn());
+
+
             pstmt.setInt(1,input);
             rs = pstmt.executeQuery();
-            
+
             while (rs.next()) {
                 String name = rs.getString("name");
                 int age = rs.getInt("age");
@@ -60,7 +60,7 @@ public class Review05 {
                     e.printStackTrace();
                 }
             }
-            if (pstmt != null) { 
+            if (pstmt != null) {
                 try {
                     pstmt.close();
                 } catch (SQLException e) {
